@@ -20,6 +20,6 @@ class MainReactNativeHost(application: Application) : VoiceApplicationProxy.Voic
     }
 
     override fun getJSMainModuleName(): String {
-        return "mobile"
+        return "index"
     }
 }

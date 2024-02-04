@@ -28,8 +28,8 @@ export const LoginScreen = () => {
   const router: NavigationProp<AppNavigation> = useNavigation();
   const { control, handleSubmit, formState: { errors }, reset} = useForm<LoginForm>({
     defaultValues: {
-      email: 'dimauuvin@closecall.ai',
-      password: 'BmqLtht9dun8h7l'
+      email: '',
+      password: ''
     }
   });
   
