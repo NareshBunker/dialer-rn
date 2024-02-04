@@ -1,0 +1,1 @@
+export { DialPadKeyboard } from './component';

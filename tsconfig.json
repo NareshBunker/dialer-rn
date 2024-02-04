@@ -1,3 +1,25 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "strict": true,
+    "jsx": "react-native",
+    "baseUrl": "./src/",
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@providers": ["providers/*"],
+      "@screens/*": ["screens/*"],
+      "@api/*": ["api/*"],
+      "@components/*": ["components/*"],
+      "@hooks/*": ["hooks/*"],
+      "@theme/*": ["theme/*"],
+      "@utils/*": ["utils/*"]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }

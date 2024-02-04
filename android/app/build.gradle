@@ -109,6 +109,8 @@ dependencies {
     implementation("com.facebook.react:react-android")
     implementation("com.facebook.react:flipper-integration")
 
+    implementation("com.microsoft.appcenter:appcenter-distribute:4.3.1")
+
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
     } else {
@@ -117,3 +119,22 @@ dependencies {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+
+project.ext.vectoricons = [
+    iconFontNames: [
+        'MaterialIcons.ttf',
+        'EvilIcons.ttf',
+        'Entypo.ttf',
+        'AntDesign.ttf',
+        'Feather.ttf',
+        'FontAwesome.ttf',
+        'Fontisto.ttf',
+        'Foundation.ttf',
+        'Ionicons.ttf',
+        'MaterialCommunityIcons.ttf',
+        'Octicons.ttf',
+        'SimpleLineIcons.ttf',
+        'Zocial.ttf'
+    ]
+]
+apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")

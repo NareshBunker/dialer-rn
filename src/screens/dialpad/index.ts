@@ -1,0 +1,1 @@
+export { DialPadScreen } from './component';
