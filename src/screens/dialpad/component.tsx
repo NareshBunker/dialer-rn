@@ -10,7 +10,9 @@ export const DialPadScreen = () => {
         <Badge
           txtAlign={'left'}
           type={'info'}
-          text={'NOTE: If you have multiple shops, please select it first on "Profile" tab, to receive proper data processing!'}
+          text={
+            'NOTE: If you have multiple shops, please select it first on "Profile" tab, to receive proper data processing!'
+          }
           size={'small'}
         />
       </View>

@@ -5,11 +5,21 @@ import { HomeScreen } from '@screens/home';
 import { DialPadScreen } from '@screens/dialpad';
 import { CallsScreen } from '@screens/calls';
 import { ProfileScreen } from '@screens/profile';
-import { AppNavigation, CALLS_ROUTE, DIAL_PAD_ROUTE, HOME_ROUTE, PROFILE_ROUTE } from './routes.ts';
+import {
+  AppNavigation,
+  CALLS_ROUTE,
+  DIAL_PAD_CALL_ROUTE,
+  DIAL_PAD_ROUTE,
+  HOME_ROUTE,
+  PROFILE_ROUTE
+} from './routes.ts';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { ToastProvider } from 'react-native-toast-notifications';
+import { DialPadCallScreen } from '@screens/dial-pad-call';
+
+import './utils';
 
 const Tab = createBottomTabNavigator<AppNavigation>();
 
@@ -23,7 +33,8 @@ function App() {
               name={HOME_ROUTE}
               options={{
                 title: 'Home',
-                tabBarIcon: ({ color }) => <AntDesign size={24} name={'home'} color={color} />
+                tabBarIcon: ({ color }) => <AntDesign size={24} name={'home'} color={color} />,
+                headerShown: false,
               }}
               component={HomeScreen}
             />
@@ -39,7 +50,8 @@ function App() {
               name={DIAL_PAD_ROUTE}
               options={{
                 title: 'Dial Pad',
-                tabBarIcon: ({ color }) => <Entypo size={24} name={'dial-pad'} color={color} />
+                tabBarIcon: ({ color }) => <Entypo size={24} name={'dial-pad'} color={color} />,
+                headerShown: false,
               }}
               component={DialPadScreen}
             />
@@ -48,6 +60,14 @@ function App() {
               component={ProfileScreen}
               options={{
                 title: 'Profile',
+                tabBarIcon: ({ color }) => <FontAwesome size={24} name={'user'} color={color} />
+              }}
+            />
+            <Tab.Screen
+              name={DIAL_PAD_CALL_ROUTE}
+              component={DialPadCallScreen}
+              options={{
+                title: 'Call',
                 tabBarIcon: ({ color }) => <FontAwesome size={24} name={'user'} color={color} />
               }}
             />

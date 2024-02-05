@@ -13,6 +13,7 @@ import { NavigationProp, RouteProp, useIsFocused, useNavigation, useRoute } from
 import { Voice } from '@twilio/voice-react-native-sdk';
 import { ParamListBase } from '@react-navigation/native';
 import { AppNavigation, DIAL_PAD_ROUTE } from '@/routes.ts';
+import {voice} from "@/utils";
 
 interface RouteParams extends RouteProp<ParamListBase> {
   params: {
@@ -23,11 +24,10 @@ interface RouteParams extends RouteProp<ParamListBase> {
 
 export const DialPadCall = () => {
   const router: NavigationProp<AppNavigation> = useNavigation();
-  const { params: { number: phoneQuery } } = useRoute<RouteParams>();
+  // const { params: { number: phoneQuery } } = useRoute<RouteParams>();
   const phoneNumber: string = useMemo(() => {
-    return '+16592087485';
-    // return phoneQuery as string;
-  }, [phoneQuery]);
+    return '';
+  }, []);
   const seconds = useRef<number>(0);
   const { isLoading, load, loadEnd } = useIsLoading(false);
   const [deviceData, setDevice] = useState<any | null>(null);
@@ -68,20 +68,38 @@ export const DialPadCall = () => {
         load();
         const tokenRes: AccessTokenDto = await twilioApi.getVoiceToken();
         const token = tokenRes.accessToken;
-        const voice: Voice = new Voice();
+        voice.on(Voice.Event.AudioDevicesUpdated, (data: any) => {
+          console.log('device update', data);
+        });
+        voice.on(Voice.Event.Unregistered, (data: any) => {
+          console.log('unregistered', data);
+        });
         voice.on(Voice.Event.Registered, (data: any) => {
           console.log('registered', data);
         });
         voice.on(Voice.Event.Error, (data) => {
           console.log('voice error', data);
-        })
-        const call = await voice.connect(token, {
-          params: {
-            To: phoneNumber,
-            recipientType: 'number',
-          }
         });
+        loadEnd();
+        voice.connect(token, {
+          params: {
+            // To: phoneNumber,
+            // To: '+16592087485',
+            To: 'some valid number here',
+            recipientType: 'number',
+          },
+          contactHandle: 'some_contact_name_123',
+        })
+            .then((d) => {
+              console.log('call', d);
+            })
+            .catch((e) => {
+              console.log('error', e);
+            })
+        // console.log(222);
+        // console.log(call);
       } catch (e) {
+        console.log(444);
         console.log(e);
       } finally {
         loadEnd();

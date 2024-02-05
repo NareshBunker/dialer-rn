@@ -34,6 +34,13 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSMicrophoneUsageDescription</key>
+    	<string>foo</string>
+    	<key>NSUserActivityTypes</key>
+    	<array>
+    		<string>INStartAudioCallIntent</string>
+    		<string>INStartCallIntent</string>
+    	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
