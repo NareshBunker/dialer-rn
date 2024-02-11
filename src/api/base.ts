@@ -10,7 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // import { API_URL} from '@env';
 import { TokensDto } from '@/api/auth/types';
 
-const API_URL= 'https://a1260c16c672.ngrok.app/api';
+// const API_URL= 'https://a1260c16c672.ngrok.app/api';
+const API_URL= "https://4145fc7c46be.ngrok.app/api"
 
 const createInstance = () => {
   return axios.create({

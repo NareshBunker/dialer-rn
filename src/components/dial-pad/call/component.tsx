@@ -68,6 +68,7 @@ export const DialPadCall = () => {
         load();
         const tokenRes: AccessTokenDto = await twilioApi.getVoiceToken();
         const token = tokenRes.accessToken;
+        
         voice.on(Voice.Event.AudioDevicesUpdated, (data: any) => {
           console.log('device update', data);
         });
@@ -85,13 +86,13 @@ export const DialPadCall = () => {
           params: {
             // To: phoneNumber,
             // To: '+16592087485',
-            To: 'some valid number here',
+            To: '+919024647467',
             recipientType: 'number',
           },
           contactHandle: 'some_contact_name_123',
         })
             .then((d) => {
-              console.log('call', d);
+              console.log('call=======================', JSON.stringify(d));
             })
             .catch((e) => {
               console.log('error', e);
