@@ -9,8 +9,8 @@ export const CALL_DETAILS_ROUTE = 'home';
 
 export interface AppNavigation extends ParamListBase {
   home: undefined;
-  calls: undefined;
-  "dial-pad": undefined;
+  calls: {number : string};
+  "dial-pad": {number: string};
   profile: undefined;
-  "dial-pad-call": undefined;
+  "dial-pad-call": {number: string};
 }

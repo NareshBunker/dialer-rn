@@ -22,9 +22,11 @@ interface RouteParams extends RouteProp<ParamListBase> {
 }
 
 
-export const DialPadCall = () => {
+export const DialPadCall: React.FC= ()  => {
   const router: NavigationProp<AppNavigation> = useNavigation();
-  // const { params: { number: phoneQuery } } = useRoute<RouteParams>();
+  const { params: { number: phoneQuery } } = useRoute<RouteParams>();
+  const route = useRoute();
+  const getParam = route?.params
   const phoneNumber: string = useMemo(() => {
     return '';
   }, []);
@@ -64,6 +66,9 @@ export const DialPadCall = () => {
       return;
     }
     const init = async () => {
+      let i = getParam?.number.toString()
+      console.log(i);
+
       try {
         load();
         const tokenRes: AccessTokenDto = await twilioApi.getVoiceToken();
@@ -86,9 +91,9 @@ export const DialPadCall = () => {
         loadEnd();
         voice.connect(token, {
           params: {
-            To: phoneNumber,
+            To: i,
             // To: '+16592087485',
-            // To: '+919024647467',
+            // To: '+918003080679',
             recipientType: 'number',
           },
           contactHandle: 'some_contact_name_123',

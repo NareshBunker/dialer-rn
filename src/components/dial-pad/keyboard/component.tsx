@@ -96,6 +96,8 @@ export const DialPadKeyboard = () => {
     }
     const result = `${currValue}${btn.label}`;
     value.current = result;
+    console.log("result ====", result);
+    
     ref?.current?.setNativeProps({text: result});
   };
 
@@ -104,9 +106,8 @@ export const DialPadKeyboard = () => {
       Alert.alert('Error', 'Please enter phone number');
       return;
     }
-    console.log("phoneNumber", phoneNumber);
     
-    // router.navigate(DIAL_PAD_CALL_ROUTE,{'phoneNumber': phoneNumber});
+    router.navigate(DIAL_PAD_CALL_ROUTE,{number:value.current});
     // return;
     // if (!currentShop) {
     //   return;
@@ -141,6 +142,8 @@ export const DialPadKeyboard = () => {
       }
       return e.nativeEvent.text;
     });
+    console.log("---------", phoneNumber);
+    
   };
 
   return (
