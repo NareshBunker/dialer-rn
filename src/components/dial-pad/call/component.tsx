@@ -86,9 +86,9 @@ export const DialPadCall = () => {
         loadEnd();
         voice.connect(token, {
           params: {
-            // To: phoneNumber,
+            To: phoneNumber,
             // To: '+16592087485',
-            To: '+919997854380',
+            // To: '+919024647467',
             recipientType: 'number',
           },
           contactHandle: 'some_contact_name_123',

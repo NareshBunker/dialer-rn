@@ -104,7 +104,9 @@ export const DialPadKeyboard = () => {
       Alert.alert('Error', 'Please enter phone number');
       return;
     }
-    router.navigate(DIAL_PAD_CALL_ROUTE);
+    console.log("phoneNumber", phoneNumber);
+    
+    // router.navigate(DIAL_PAD_CALL_ROUTE,{'phoneNumber': phoneNumber});
     // return;
     // if (!currentShop) {
     //   return;
@@ -153,6 +155,7 @@ export const DialPadKeyboard = () => {
               color: '#3b82f6',
               textAlign: 'center',
             }}
+            value={phoneNumber}
             onChange={changeNumber}
           />
           <View>
