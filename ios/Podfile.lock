@@ -1208,6 +1208,7 @@ DEPENDENCIES:
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - "twilio-voice-react-native (from `../node_modules/@twilio/voice-react-native-sdk`)"
+  - TwilioVoice (~> 6.9.2)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -1403,8 +1404,8 @@ SPEC CHECKSUMS:
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   twilio-voice-react-native: 4f4fa544672fbcb4b594a5bf237801a19df2472b
   TwilioVoice: e129d0d9533152e61b7d450db92ccc2159f08161
-  Yoga: 64cd2a583ead952b0315d5135bf39e053ae9be70
+  Yoga: 1b901a6d6eeba4e8a2e8f308f708691cdb5db312
 
-PODFILE CHECKSUM: 2b1af37098da59f32139008a5f9cc18e2b4cf24e
+PODFILE CHECKSUM: 7f8dee2f2ddcf50d192219957bb91cb561f6582b
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.14.3

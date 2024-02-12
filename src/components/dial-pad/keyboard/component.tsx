@@ -49,7 +49,7 @@ const rows: KeyboardButtonEntity[][] = [
   ],
 ];
 
-const LIMIT = 12;
+const LIMIT = 13;
 
 export const DialPadKeyboard = () => {
   const {currentShop} = useAuthContext();

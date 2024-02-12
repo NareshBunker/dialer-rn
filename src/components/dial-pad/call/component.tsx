@@ -13,7 +13,7 @@ import { NavigationProp, RouteProp, useIsFocused, useNavigation, useRoute } from
 import { Voice } from '@twilio/voice-react-native-sdk';
 import { ParamListBase } from '@react-navigation/native';
 import { AppNavigation, DIAL_PAD_ROUTE } from '@/routes.ts';
-import {voice} from "@/utils";
+import { voice } from "@/utils";
 
 interface RouteParams extends RouteProp<ParamListBase> {
   params: {
@@ -36,29 +36,29 @@ export const DialPadCall = () => {
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const [isSpeakerEnabled, setIsSpeakerEnabled] = useState<boolean>(false);
   const isFocused = useIsFocused();
-  
+
   const displayTime = () => {
     const minutes = Math.floor(seconds.current / 60);
     const secondsLeft = seconds.current % 60;
     return `${minutes < 10 ? '0' : ''}${minutes}:${secondsLeft < 10 ? '0' : ''}${secondsLeft}`;
   }
-  
+
   const speakerHandler = () => {
     setIsSpeakerEnabled(!isSpeakerEnabled);
   }
-  
+
   const muteHandler = () => {
     setIsMuted(!isMuted);
   }
-  
+
   const connect = async () => {
-    
+
   }
-  
+
   const cancelHandler = () => {
     router.navigate(DIAL_PAD_ROUTE);
   }
-  
+
   useEffect(() => {
     if (!isFocused) {
       return;
@@ -68,7 +68,7 @@ export const DialPadCall = () => {
         load();
         const tokenRes: AccessTokenDto = await twilioApi.getVoiceToken();
         const token = tokenRes.accessToken;
-        
+
         voice.on(Voice.Event.AudioDevicesUpdated, (data: any) => {
           console.log('device update', data);
         });
@@ -81,22 +81,24 @@ export const DialPadCall = () => {
         voice.on(Voice.Event.Error, (data) => {
           console.log('voice error', data);
         });
+
+        // voice.on(Voice.Event.CancelledCallInvite)
         loadEnd();
         voice.connect(token, {
           params: {
             // To: phoneNumber,
             // To: '+16592087485',
-            To: '+919024647467',
+            To: '+919997854380',
             recipientType: 'number',
           },
           contactHandle: 'some_contact_name_123',
         })
-            .then((d) => {
-              console.log('call=======================', JSON.stringify(d));
-            })
-            .catch((e) => {
-              console.log('error', e);
-            })
+          .then((d) => {
+            console.log('call=======================', JSON.stringify(d));
+          })
+          .catch((e) => {
+            console.log('error', e);
+          })
         // console.log(222);
         // console.log(call);
       } catch (e) {
@@ -105,7 +107,7 @@ export const DialPadCall = () => {
       } finally {
         loadEnd();
       }
-      
+
       // setDevice(device);
       // console.log('device', device);
       // await connect(device);
@@ -113,22 +115,25 @@ export const DialPadCall = () => {
       //   console.log('registered', data);
       // });
     }
-    
+
     init();
 
     return () => {
       if (deviceData) {
         deviceData.destroy();
       }
+      voice.removeAllListeners();
+
     };
+   
   }, [isFocused]);
-  
+
   // if (isLoading) {
   //   return <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
   //     <Text>Initializing call...</Text>
   //   </View>
   // }
-  
+
   return (<View style={styles.container}>
     <View style={styles.calleeContainer}>
       <Text style={styles.calleeText}>Dave, {phoneNumber}</Text>

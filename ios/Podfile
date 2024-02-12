@@ -42,6 +42,7 @@ target 'mobile' do
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
+  pod 'TwilioVoice', '~> 6.9.2'
 
   target 'mobileTests' do
     inherit! :complete
